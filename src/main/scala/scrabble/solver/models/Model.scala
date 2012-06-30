@@ -8,10 +8,10 @@ object Model{
 
   case class Dictionary(indices:SortedSet[String]){
     def isValidWord(word:String)={
-      !indices.range(word, word).isEmpty
+      indices.contains(word)
     }
     def hasPrefix(word:String)={
-      !indices.from(word).takeWhile(w => w.startsWith(word)).isEmpty
+      indices.from(word).headOption.getOrElse("").startsWith(word)
     }
   }
 }

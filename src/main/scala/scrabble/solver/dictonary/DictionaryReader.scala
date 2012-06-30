@@ -7,6 +7,6 @@ import scrabble.solver.models.Model._
 
 object DictionaryReader{
   def apply(dictionaryFile:String):Dictionary={
-    Dictionary(SortedSet(Source.fromFile(dictionaryFile).getLines.toList:_*))
+    Dictionary(SortedSet(Source.fromFile(dictionaryFile).getLines.toList.map(_.toLowerCase):_*))
   }
 }
