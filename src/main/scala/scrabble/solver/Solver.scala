@@ -3,11 +3,9 @@ package scrabble.solver
 import scrabble.solver.models.Model._
 
 import com.yammer.metrics.scala._
-//import scalaz._
-//import scalaz.Scalaz._
-
 object Solver extends Instrumented{
   private val findWordsTimer = metrics.timer("findWords")
+
   private val checkIfGotWord = metrics.timer("checkIfGotWords")
   private val checkIfGotPrefix = metrics.timer("checkIfGotPrefix")
 
@@ -36,7 +34,7 @@ object Solver extends Instrumented{
     visitedEntries:Set[Entry],
     wordsFound:Set[String],
     currentWord:String):Set[String]={
-      println("visited Location(row="+currentEntry._1+", col="+currentEntry._2+")")
+      //println("visited Location(row="+currentEntry._1+", col="+currentEntry._2+")")
       findWordsTimer.time{
       val newVisitedEntries = visitedEntries+currentEntry
       if(shouldTerminate(newVisitedEntries, board) ||  !shouldProceed(currentWord, dictionary)){
@@ -89,7 +87,7 @@ object Solver extends Instrumented{
         true
       }
       else{
-        println("NO PREFIX: "+currentWord)
+        //println("NO PREFIX: "+currentWord)
         //println("No Prefix word: "+currentWord)
         false
       }

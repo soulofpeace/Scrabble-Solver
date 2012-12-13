@@ -13,7 +13,6 @@ object App{
   def main(arg:Array[String])={
 
     //ConsoleReporter.enable(60, TimeUnit.SECONDS)
-    val start = System.currentTimeMillis
     val board:Board=List(
       List("l", "qu", "r", "e"),
       List("s", "l", "u", "s"),
@@ -21,10 +20,14 @@ object App{
       List("n", "r", "e", "n")
       )
     val dictionary = DictionaryReader("/usr/share/dict/words")
-    val solutions = Solver.solveBoard(dictionary, board)
-    println("Time Taken: "+(System.currentTimeMillis-start))
-    println(solutions.size + " Solutions :")
-    printToFile(new File("solution.txt"))(p=> {solutions.foreach(p.println)})
+
+    (0).to(5).foreach(count => {
+      val start = System.currentTimeMillis
+      val solutions = Solver.solveBoard(dictionary, board)
+      println("Time Taken: "+(System.currentTimeMillis-start))
+      println(solutions.size + " Solutions :")
+      printToFile(new File("solution.txt"))(p=> {solutions.foreach(p.println)})
+    })
 
   }
 
